@@ -5,15 +5,16 @@
  * @param {{ children: React.ReactNode, className?: string, glow?: string, padding?: string, hover?: boolean }} props
  */
 export default function AuraCard({ children, className = "", glow, padding = "p-6", hover = false }) {
-    const glowStyle = glow ? { boxShadow: `0 0 30px ${glow}25, 0 0 60px ${glow}10` } : {};
-    const borderColor = glow ? `${glow}25` : "rgba(139,92,246,0.12)";
+    const glowStyle = glow ? { boxShadow: `0 0 24px ${glow}20` } : {};
+    const borderColor = glow ? `${glow}30` : "#21262d";
 
     return (
         <div
-            className={`relative rounded-2xl backdrop-blur-xl transition-all duration-300 ${padding} ${hover ? "hover:-translate-y-1" : ""} ${className}`}
+            className={`relative transition-all duration-200 ${padding} ${hover ? "hover:border-opacity-60" : ""} ${className}`}
             style={{
-                background: "rgba(7,7,24,0.75)",
-                border: `1px solid ${borderColor}`,
+                background:   "#161b22",
+                border:       `1px solid ${borderColor}`,
+                borderRadius: 6,
                 ...glowStyle,
             }}
         >
@@ -27,10 +28,18 @@ export default function AuraCard({ children, className = "", glow, padding = "p-
  */
 export function AuraCardHeader({ label, badge, icon }) {
     return (
-        <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-                {icon && <span className="text-base">{icon}</span>}
-                <h3 className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest">{label}</h3>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14, paddingBottom: 10, borderBottom: "1px solid #21262d" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                {icon && <span style={{ fontSize: 14 }}>{icon}</span>}
+                <h3 style={{
+                    fontFamily:    "'JetBrains Mono','Courier New',monospace",
+                    fontSize:      10,
+                    fontWeight:    700,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color:         "#e6a817",
+                    margin:        0,
+                }}>{label}</h3>
             </div>
             {badge}
         </div>
